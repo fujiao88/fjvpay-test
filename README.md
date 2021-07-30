@@ -4,7 +4,7 @@ vue移动端支付密码窗插件
 
 ### demo地址
 
-[demo演示页面](https://fujiao88.github.io/fjvpay-test/dist/index.html/#/, '支付弹窗演示页面')
+[demo演示页面](https://fujiao88.github.io/fjvpay-test/dist/index.html  '支付弹窗演示页面')
 
 ### 插件的安装
 
