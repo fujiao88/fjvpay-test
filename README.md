@@ -4,7 +4,7 @@ vue移动端支付密码窗插件
 
 ### demo地址
 
-[demo演示页面](www,"支付弹窗demo演示页面")
+[demo演示页面](https://fujiao88.github.io/fjvpay-test/dist/index.html, "支付弹窗demo演示页面")
 
 ### 插件的安装
 
@@ -66,7 +66,7 @@ Vue.use(vpay);
 支付结果成功：
 
 ```javascript
-this.$refs.pays.$success(true).then(res => {
+this.$refs.pays.success(true).then(res => {
     console.log('支付成功')
     this.$router.push('/success')
 })
@@ -75,7 +75,7 @@ this.$refs.pays.$success(true).then(res => {
 支付结果失败：
 
 ```javascript
-this.$refs.pays.$fail('可以自定义错误提示，默认：支付密码错误')  
+this.$refs.pays.fail('可以自定义错误提示，默认：支付密码错误')  
 ```
 
 

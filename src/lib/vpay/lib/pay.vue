@@ -10,7 +10,7 @@
                 <ul class="pass-area">
                     <li class="pass-item"
                         :class="{on: password.length > index}"
-                        v-for="(item, index) in digit" 
+                        v-for="(item, index) in psdLength" 
                         :key="index"></li>                      
                 </ul>
             </div> 
@@ -70,7 +70,7 @@
                     <img src="./images/loading.png" class="loading-ico" alt="" v-if="payStatus === 1">
                     <img src="./images/success.png" class="success-ico" alt="" v-if="payStatus === 2">
                     <!--加载文字-->
-                    <p v-if="payStatus === 1">{{loadingText}}</p>
+                    <p v-if="payStatus === 1">{{payingText}}</p>
                     <p v-if="payStatus === 2">{{finishedText}}</p>                    
                 </div>
             </div>
@@ -114,7 +114,7 @@ export default {
             default: false
         },
         // 支付密码框位数
-        digit: {
+        psdLength: {
             type: Number,
             default: 6
         },
@@ -124,7 +124,7 @@ export default {
             default: '请输入支付密码'
         },
         // 正在支付的文字提示
-        loadingText: {
+        payingText: {
             type: String,
             default: '正在支付'
         },
@@ -143,7 +143,7 @@ export default {
     watch: {
         // 监听支付密码，支付密码输入完成后触发input-end回调
         password (n, o) {
-            if (n.length === this.digit) {
+            if (n.length === this.psdLength) {
                 this.payStatus = 1;
                 this.$emit('input-end', this.password)                
             }
@@ -154,7 +154,7 @@ export default {
          // 点击密码操作
         onKeyboard(key) {
             // 截图前六位密码
-            this.password = (this.password + key).slice(0, this.digit);
+            this.password = (this.password + key).slice(0, this.psdLength);
         },
 
         // 密码回删
@@ -181,7 +181,7 @@ export default {
         },
 
         //支付成功
-        $success () {
+        success () {
             return new Promise((resolve, reject) => {
                 // 支付成功立即显示成功状态
                 this.payStatus = 2;
@@ -195,7 +195,7 @@ export default {
 
         // 支付失败
         // 隐藏加载提示框，显示支付失败确认框
-        $fail (tip) {
+        fail (tip) {
             tip && typeof tip === 'string' && (this.failTip = tip);
             this.payStatus = 0;
             this.isShowFail = true;

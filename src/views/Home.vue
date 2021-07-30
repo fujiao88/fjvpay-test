@@ -6,7 +6,8 @@
     </div>
     <vpay    
       ref="pays"    
-      v-model="show"               
+      v-model="show"
+      :psd-length="6"              
       @close="close"    
       @forget="forget"    
       @input-end="inputEnd"
@@ -26,6 +27,7 @@ export default {
   data() {
     return {
         show:false,
+        num:4
     }
   },
   methods:{
@@ -48,13 +50,13 @@ export default {
             if (val == 111111) {
                 // 调用插件的$success方法告知插件支付成功
                 // 并且在then方法里面可以写支付成功的回调，例如可以跳转支付结果页面
-                this.$refs.pays.$success().then(res => {
+                this.$refs.pays.success().then(res => {
                     console.log('支付成功')
                     this.$router.push('/success')
                 })
             // 模拟支付失败的结果    
             } else {
-                this.$refs.pays.$fail()
+                this.$refs.pays.fail()
             }
         }, 1000)
     },
